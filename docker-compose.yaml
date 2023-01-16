@@ -1,0 +1,63 @@
+version: "3.8"
+
+services:
+
+ db:
+  image: postgres
+  environment:
+   - POSTGRES_USER=postgres
+   - POSTGRES_PASSWORD=123456
+   - POSTGRES_DB=postgres
+  ports:
+   - "5432:5432"
+  volumes:
+   - data:/var/lib/docker/volumes/postgresqldata/_data
+   - ./CreateDB.sql:/docker-entrypoint-initdb.d/CreateDB.sql
+  networks:
+   - network
+#     ipv4_address: 172.21.0.2
+
+ pgadmin:
+  image: dpage/pgadmin4
+  environment:
+   - PGADMIN_DEFAULT_EMAIL=lixx@example.com
+   - PGADMIN_DEFAULT_PASSWORD=123456
+   - PGADMIN_LISTEN_PORT=5050
+  ports:
+   - "5050:5050"
+  volumes:
+   - pgvolume:/var/lib/docker/volumes/pgadmindata/_data
+  depends_on:
+   - db
+  networks:
+   - network
+#    ipv4_address: 172.21.0.4
+
+ server:
+  image: apache_server
+  ports:
+   - "80:80"
+
+ web:
+  image: node_login
+  depends_on:
+   - db
+   - pgadmin
+   - server
+  ports:
+   - "3100:3100"
+  networks:
+   - network
+#    ipv4_address: 172.21.0.3
+
+networks:
+ network:
+#  driver: bridge
+#  ipam:
+#   config:
+#    - subnet: 172.21.0.0/16
+#      gateway: 172.21.0.1
+
+volumes:
+ data:
+ pgvolume:
