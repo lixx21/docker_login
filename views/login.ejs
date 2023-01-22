@@ -86,8 +86,8 @@
 			right: -30px;
 			bottom: -80px;
 		}
-		form{
-			height: 520px;
+		.login{
+			height: 620px;
 			width: 400px;
 			background-color: rgba(255,255,255,0.13);
 			position: absolute;
@@ -139,7 +139,7 @@
 			width: 100%;
 			background-color: #ffffff;
 			color: #080710;
-			padding: 15px 0;
+			padding: 13px 0;
 			font-size: 18px;
 			font-weight: 600;
 			border-radius: 5px;
@@ -176,12 +176,12 @@
         <div class="shape"></div>
         <div class="shape"></div>
     </div>
-	<!-- <div class="col-md-4 col-md-offset-4 form-card"> -->
+	<!-- <div class="col-md-4 col-md-offset-4	form-card"> -->
 		<!-- <div>
 			<p>PROCRASTINATOR</p>
 		</div> -->
 		<!-- <div class="form-group "> -->
-		<form action = '/login' method="post">
+		<form class="login" action = '/login' method="post">
 			<h3>PROCRASTINATOR</h3>
 			<label for="username">Username</label>
 			<input type="text" name="username" id="username" required="" class="form-control"><br />
@@ -193,6 +193,10 @@
 				<div class="go"><i class="fab fa-google"></i>  Google</div>
 				<div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
 			</div>
+		</form>
+
+		<form class = 'signup 'action = '/register'>
+			<input type="submit" value="SIGN-UP" class="btn btn-danger">
 		</form>
 		<!-- </div> -->
 		<!-- <div class="mssg bg-danger">
