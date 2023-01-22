@@ -2,6 +2,7 @@ const express = require('express')
 const bodyParser = require('body-parser')
 const client = require('./databasepg');
 const path = require('path');
+const e = require('express');
 const app = express();
 
 // create connection to database
@@ -63,6 +64,22 @@ app.post('/login', (req, res) => {
         }   
     })
 })
+
+app.get('/register', (req, res) => {
+    return res.render('register')
+})
+
+app.post('/signup', (req, res) => {
+    //client.query(`INSERT INTO user_login (username, user_password) Values ('${req.body.username}', '${req.body.password}')`, (err, result2) =>{
+    client.query(`INSERT INTO user_login (username, user_password) Values ('${req.body.username}', '${req.body.password}')`, (err, result) => {
+        if(err){
+            console.log(err.message)
+        }else{
+            return res.render('success')
+        }
+    })
+})
+    
 
 app.listen(3100, () => {
     console.log('listening on 3100')
