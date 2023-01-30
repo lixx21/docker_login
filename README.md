@@ -40,3 +40,10 @@
 2. After that command the apache command and uncommand nodejs to build node.js image
 3. pull postgre image and pgadmin image from pgadmin
 4. after that I already created docker-compose.yaml therefore you only need to run ```docker-compose up``` and the docker compose
+
+# Other Information
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; This information to explain my endpoint:
+1. **/** to show login page where you can login or register on my login page
+2. **/login** this endpoint is the logic for login page, this will used query to read password from postgresql based on username that user input, and after that check if the password that user already input same as password in the database. If same then web will render success.ejs that is interface for login success.
+3. **/register** this endpoint will render register.ejs that is used to show register page where user can input username and password from that
+4. **/signup** this endpoint will used query to insert username and password into the database and render success.ejs after success to input new username and password to database
